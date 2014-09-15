@@ -36,6 +36,14 @@ confusionMatrix(KNN,TestLabels)
 
 ##### AUC or Area Under the Curve is used to evaluate algorithm performance. 
 
+library(ROCR)
+KNNProb<-knn(Train,Test,TrainLabels,k=7,prob=T)
+KNNDecision<-ifelse(KNNProb=="positive",attributes(KNNProb)$prob,1-(attributes(KNNProb)$prob))
+perf<-performance(prediction(KNNDecision,TestLabels=="positive"),"auc")
+auc<-perf@y.values
+auc
+
+##### Accuracy=95%, AUC=99%.
 
 
 
