@@ -26,10 +26,16 @@ Test<-datastd[rgroup<=0.2,]
 TrainLabels<-data[rgroup>0.2,"Status"]
 TestLabels<-data[rgroup<=0.2,"Status"]
 
-##### K-Nearest Neighbour is called on Training and Test Data using Training Labels to predict Test classification
+##### K-Nearest Neighbour is called on Training and Test Data using Training Labels to predict Test classification.
+##### Accuracy, Sensitivity, Specificity are indexes used to evaluate the algorithm performance.
 
 library(class)
 KNN<-knn(Train,Test,TrainLabels,k=13)
 KNN<-knn(Train,Test,TrainLabels,k=7)
 confusionMatrix(KNN,TestLabels)
+
+##### AUC or Area Under the Curve is used to evaluate algorithm performance. 
+
+
+
 
