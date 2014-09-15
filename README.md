@@ -11,7 +11,7 @@ data <- read.table('parkinsons.data',header=T,sep=',',na.strings=c('NA',''))
 
 summary(data)
 
-#### looking at data, we notice columns have different ranges. To avoid that different unit of measurement could affect wrongy the data during Knn euclidean distance algorithm, we prefer to standardize the data.
+##### looking at data, we notice columns have different ranges. To avoid that different unit of measurement could affect wrongy the data during Knn euclidean distance algorithm, we prefer to standardize the data.
 
 data$Status<-factor(data$status, labels = c("negative", "positive"))
 columns<-setdiff(colnames(data),c("name","status"))
@@ -26,4 +26,10 @@ Test<-datastd[rgroup<=0.2,]
 TrainLabels<-data[rgroup>0.2,"Status"]
 TestLabels<-data[rgroup<=0.2,"Status"]
 
-#### 
+##### K-Nearest Neighbour is called on Training and Test Data using Training Labels to predict Test classification
+
+library(class)
+KNN<-knn(Train,Test,TrainLabels,k=13)
+KNN<-knn(Train,Test,TrainLabels,k=7)
+confusionMatrix(KNN,TestLabels)
+
