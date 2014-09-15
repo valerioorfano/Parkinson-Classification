@@ -43,6 +43,12 @@ auc<-perf@y.values
 auc
 
 #### Accuracy=95%, AUC=99%.
+#### Plot of ROC curve
+
+perf<-performance(prediction(KNNDecision,TestLabels=="positive"),"tpr","fpr")
+plot(perf,main="ROC Curves",col="blue")
+abline(0,1,col="grey")
+
 
 
 
